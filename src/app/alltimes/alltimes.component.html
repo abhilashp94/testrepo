@@ -40,9 +40,44 @@
       <label for="tableSearch">Search: </label>
       <input id="tableSearch" #tableSearch type="text" placeholder="Search All The Things">
       <button type="button" pButton icon="fa-table" label="Export" (click)="dt.exportCSV()" style="float:right;"></button>
-    </p-footer>
+      </p-footer>
   </p-dataTable>
 
   <p-contextMenu #tableContextMenu [model]="contextMenu"></p-contextMenu>
+
+  <button id="addTime" type="button" (click)="addTimeForm = true" pButton icon="fa-external-link-square" label="Add Time"></button>
+
+  <p-dialog header="Add Timesheet"  [(visible)]="addTimeForm" [width]="500" [modal]="true" [responsive]="true">
+        <form class="ui-g" [formGroup]="timeEntryForm"> 
+          <p-panel  class="ui-g-12">
+            <div class="dialogBody">
+              <div class="ui-g">
+                  <label for="User" class="ui-g-3 ui-md-3">User:</label>
+                  <input id="User" formControlName="User" class="ui-g-9 ui-md-9" type="text" />
+              </div>
+              <div class="ui-g">
+                  <label for="Project" class="ui-g-3 ui-md-3">Project:</label>
+                  <input id="Project" formControlName="Project" class="ui-g-9 ui-md-9" type="text" />
+              </div>
+              <div class="ui-g">
+                  <label for="Category" class="ui-g-3 ui-md-3">Category:</label>
+                  <input id="Category" formControlName="Category" class="ui-g-9 ui-md-9" type="text" />
+              </div>
+              <div class="ui-g">
+                  <label for="StartTime" class="ui-g-3 ui-md-3">Start Time:</label>
+                  <input id="StartTime" formControlName="StartTime" class="ui-g-9 ui-md-9" type="number" />
+              </div>
+              <div class="ui-g">
+                  <label for="EndTime" class="ui-g-3 ui-md-3">End Time:</label>
+                  <input id="EndTime" formControlName="EndTime" class="ui-g-9 ui-md-9" type="number" />
+              </div>
+              <button pButton type="submit" label="Add" icon="fa-floppy-o" (click)="onAddFinish()"></button>
+              <button pButton type="submit" label="Cancel" icon="fa-times" (click)="cancelDialog()" class="ui-button-secondary"></button>
+              
+            </div>
+            </p-panel>
+        </form>
+      </p-dialog>
+
 
 </div>
